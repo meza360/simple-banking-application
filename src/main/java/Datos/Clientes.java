@@ -3,19 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Principal;
+package Datos;
 
 /**
  *
  * @author gm
  */
-public class Principal {
-    static void main(){
-
-        
-        
-        
-    }
-            
-            
+public class Clientes {
+    
 }
