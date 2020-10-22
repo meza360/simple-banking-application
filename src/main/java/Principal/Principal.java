@@ -15,18 +15,19 @@ public class Principal {
     public static void main(String[] args){
     
         Connection conn;
+        ConexionBD instanciabd = new ConexionBD("35.222.224.214","user","password");
+        String user,password;  
         
-             ConexionBD instanciabd = new ConexionBD("35.222.224.214","user","password");
-            
-            
-        try {
-             conn = ConexionBD.getConnection();
-             System.out.println("conexion establecida");
-        } catch (Exception e) {
-            System.out.println("error ");
-            e.printStackTrace(System.out);
-        }
-             
+//        try {
+//            user = Jtext
+//            
+//             conn = instanciabd.getConnection();
+//             System.out.println("conexion establecida");
+//        } catch (Exception e) {
+//            System.out.println("error ");
+//            e.printStackTrace(System.out);
+//        }
+//             
             System.out.println("Conexion con exito");
         
     

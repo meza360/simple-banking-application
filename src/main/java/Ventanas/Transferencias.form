@@ -144,7 +144,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="2"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Trasferencias"/>
+            <Property name="text" type="java.lang.String" value="Transferencias"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
