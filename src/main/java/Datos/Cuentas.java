@@ -11,5 +11,8 @@ package Datos;
  * @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
  */
 public class Cuentas {
-    
+    private int no_cuenta;//no cuenta de 9 digitos
+    private String cui_cliente;//cui de 13 digitos
+    private char tipo_cuenta;//puede ser 'A' o 'D'
+    private String fecha_creacion;//formato de DD-MM-YYYY
 }
