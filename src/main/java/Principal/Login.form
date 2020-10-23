@@ -190,6 +190,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField1KeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField2">
@@ -198,6 +199,9 @@
               <Color id="Text Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField2KeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>

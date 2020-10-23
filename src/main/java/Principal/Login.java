@@ -6,11 +6,20 @@
 
 /**
  *
- * @author Windows 10
+ * @author Giovani David Meza Poggio Seccion A 5990-18-14676
+ * @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
+ * @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
  */
 package Principal;
+
 import Conexion.ConexionBD;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.*;
+import java.awt.event.KeyListener;
+import javax.swing.*;
+import Ventanas.Menu;
+
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -18,6 +27,11 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setSize(500, 250);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);  
+        
+        
     }
 
     /**
@@ -97,8 +111,18 @@ public class Login extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Iniciar");
@@ -170,13 +194,21 @@ public class Login extends javax.swing.JFrame {
         Connection conn;
         ConexionBD instanciabd = new ConexionBD("35.222.224.214","user","password");
         String user,password;
+        user = this.jTextField1.getText();  password = this.jTextField2.getText();
         
         try {
-            user = this.jTextField1.getText();
-            password = this.jTextField2.getText();
-            
-             conn = ConexionBD.getConnection(user,password);
-             System.out.println("conexion establecida");
+            if (this.jTextField1.getText().length() < 2 || this.jTextField2.getText().length() < 2) {
+                JOptionPane.showMessageDialog(null, "Los campos no pueden estar en blanco", "Campos Vacios", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+            conn = ConexionBD.getConnection(user,password);
+            JOptionPane.showMessageDialog(null, "Bienvenido: " + user, "Conexion establecida", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Conexion establecida");
+            this.setVisible(false);
+            Menu v2 = new Menu();
+            v2.setVisible(true);
+            }
+           
         } catch (Exception e) {
             System.out.println("Error en la conexion,detalles:\n ");
             e.printStackTrace(System.out);
@@ -184,41 +216,32 @@ public class Login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+                char c = evt.getKeyChar();
+                if (jTextField1.getText().length() >= 12) {
+                    evt.consume();
+                    Toolkit.getDefaultToolkit().beep();
+                }       
+                if (Character.isSpaceChar(c) || c == '¿' || c == '?' || c == '\"' || c == '\'' || c == '¡' || c == '!' || c == '|' || c == '#' || c == '$' || c == '(' || c == ')' || c == '=') {
+                    evt.consume();
+                    Toolkit.getDefaultToolkit().beep();
                 }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        
-        
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+                if (jTextField2.getText().length() >= 16) {
+                    evt.consume();
+                    Toolkit.getDefaultToolkit().beep();
+                }       
+                if (Character.isSpaceChar(c) || c == '¿' || c == '?' || c == '\"' || c == '\'' || c == '¡' || c == '!' || c == '|' || c == '#' || c == '$' || c == '(' || c == ')' || c == '=') {
+                    evt.consume();
+                    Toolkit.getDefaultToolkit().beep();
+                }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

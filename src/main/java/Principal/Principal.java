@@ -13,24 +13,9 @@ import java.sql.*;
  */
 public class Principal {
     public static void main(String[] args){
-    
-        Connection conn;
-        ConexionBD instanciabd = new ConexionBD("35.222.224.214","user","password");
-        String user,password;  
         
-//        try {
-//            user = Jtext
-//            
-//             conn = instanciabd.getConnection();
-//             System.out.println("conexion establecida");
-//        } catch (Exception e) {
-//            System.out.println("error ");
-//            e.printStackTrace(System.out);
-//        }
-//             
-            System.out.println("Conexion con exito");
-        
-    
+        Login v1 = new Login();
+        v1.setVisible(true);
         
     }
             
