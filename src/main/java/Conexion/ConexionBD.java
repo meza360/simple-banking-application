@@ -23,7 +23,7 @@ public class ConexionBD {
             + ":3306/Banco?useSSL=false&serverTimeZone=UTC&allowPublicKeyRetrieval=true";
     }
     
-    public static Connection getConnection(String user,String password){//este metodo se puede llamar desde cualquier clase
+    public static Connection getConnection()throws SQLException{//este metodo se puede llamar desde cualquier clase
         try {
             Connection conexion;
             conexion = DriverManager.getConnection(url,user,password);
@@ -35,14 +35,14 @@ public class ConexionBD {
     }
     
     
-    static void close(Connection instruccion){//cierra conexiones tipo connection
+    public static void close(Connection instruccion){//cierra conexiones tipo connection
         try {     
             instruccion.close();
         } catch (Exception e) {
         }
         }
     
-    static void close(PreparedStatement instruccion){//cierra conexiones tipo PreparedStatement
+    public static void close(PreparedStatement instruccion){//cierra conexiones tipo PreparedStatement
         try { 
             try (instruccion) {
                 instruccion.closeOnCompletion();
@@ -51,7 +51,7 @@ public class ConexionBD {
         }
     }
     
-    static void close(ResultSet instruccion){//cierra conexiones tipo ResultSet
+    public static void close(ResultSet instruccion){//cierra conexiones tipo ResultSet
         try {
             instruccion.close();
         } catch (Exception e) {

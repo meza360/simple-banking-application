@@ -16,7 +16,7 @@ public class Cuentas {
     private char tipo_cuenta;//puede ser 'A' o 'D'
     private String fecha_creacion;//formato de DD-MM-YYYY
     private double balance;
-    
+    private String SQL_SELECT = "CALL Banco.sp_nueva_cuenta(\"4120737389014\",'A',5000);"; 
     public Cuentas(){
     //constructor vacio
     }

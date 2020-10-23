@@ -19,6 +19,8 @@ import java.sql.*;
 import java.awt.event.KeyListener;
 import javax.swing.*;
 import Ventanas.Menu;
+import Ventanas.*;
+import Ventanas.NuevaCuenta;
 
 public class Login extends javax.swing.JFrame {
 
@@ -30,7 +32,6 @@ public class Login extends javax.swing.JFrame {
         this.setSize(500, 250);
         this.setLocationRelativeTo(null);
         this.setResizable(false);  
-        
         
     }
 
@@ -50,14 +51,19 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         jLabel4.setText("jLabel4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setBackground(new java.awt.Color(255, 255, 255));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -99,7 +105,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(66, 162, 211));
@@ -117,18 +123,18 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
-            }
-        });
-
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Iniciar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jPasswordField1.setAutoscrolls(false);
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyTyped(evt);
             }
         });
 
@@ -140,12 +146,13 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                            .addComponent(jTextField2)))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -154,8 +161,8 @@ public class Login extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -192,21 +199,41 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         Connection conn;
-        ConexionBD instanciabd = new ConexionBD("35.222.224.214","user","password");
+        ConexionBD instanciabd;
         String user,password;
-        user = this.jTextField1.getText();  password = this.jTextField2.getText();
+        user = this.jTextField1.getText();  password = this.jPasswordField1.getText();
         
         try {
-            if (this.jTextField1.getText().length() < 2 || this.jTextField2.getText().length() < 2) {
+            if (this.jTextField1.getText().length() < 2 || this.jPasswordField1.getText().length() < 2) {
                 JOptionPane.showMessageDialog(null, "Los campos no pueden estar en blanco", "Campos Vacios", JOptionPane.ERROR_MESSAGE);
+            
             }
             else{
-            conn = ConexionBD.getConnection(user,password);
-            JOptionPane.showMessageDialog(null, "Bienvenido: " + user, "Conexion establecida", JOptionPane.ERROR_MESSAGE);
-            System.out.println("Conexion establecida");
-            this.setVisible(false);
-            Menu v2 = new Menu();
-            v2.setVisible(true);
+                try {
+            instanciabd = new ConexionBD("35.222.224.214",user,password);
+            
+                    if (ConexionBD.getConnection() != null) {
+                         
+                        JOptionPane.showMessageDialog(null, "Bienvenido: " + user, "Conexion establecida", JOptionPane.ERROR_MESSAGE);
+                        System.out.println("Conexion establecida");
+                        this.setVisible(false);
+                        
+                    //cambiar estar lineas para hacer las pruebas directamente
+                    //cuando se inicie sesion en la base de datos
+                    
+                        NuevaCuenta v2 = new NuevaCuenta();
+                        v2.setVisible(true);
+                    
+                    
+                    }else{
+                    JOptionPane.showMessageDialog(null, "No se puede acceder a la base de datos\nRevise su usuario y contraseña", "Error en inicio de sesion", JOptionPane.ERROR_MESSAGE);
+                    }
+                
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "No se puede acceder a la base de datos", "Error en inicio de sesion", JOptionPane.ERROR_MESSAGE);
+                     System.out.println("Error en la conexion,detalles:\n ");
+                     e.printStackTrace(System.out);
+                }
             }
            
         } catch (Exception e) {
@@ -229,10 +256,15 @@ public class Login extends javax.swing.JFrame {
                 }
     }//GEN-LAST:event_jTextField1KeyTyped
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+        //this.jTextField2.setText("*");
+    }//GEN-LAST:event_formKeyPressed
+
+    private void jPasswordField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyTyped
         // TODO add your handling code here:
          char c = evt.getKeyChar();
-                if (jTextField2.getText().length() >= 16) {
+                if (jPasswordField1.getText().length() >= 16) {
                     evt.consume();
                     Toolkit.getDefaultToolkit().beep();
                 }       
@@ -240,7 +272,7 @@ public class Login extends javax.swing.JFrame {
                     evt.consume();
                     Toolkit.getDefaultToolkit().beep();
                 }
-    }//GEN-LAST:event_jTextField2KeyTyped
+    }//GEN-LAST:event_jPasswordField1KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -251,7 +283,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
