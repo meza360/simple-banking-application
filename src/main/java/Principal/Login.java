@@ -250,7 +250,7 @@ public class Login extends javax.swing.JFrame {
                     evt.consume();
                     Toolkit.getDefaultToolkit().beep();
                 }       
-                if (Character.isSpaceChar(c) || c == '¿' || c == '?' || c == '\"' || c == '\'' || c == '¡' || c == '!' || c == '|' || c == '#' || c == '$' || c == '(' || c == ')' || c == '=') {
+                if (Character.isSpaceChar(c) || !Character.isAlphabetic(c)) {
                     evt.consume();
                     Toolkit.getDefaultToolkit().beep();
                 }
@@ -268,7 +268,7 @@ public class Login extends javax.swing.JFrame {
                     evt.consume();
                     Toolkit.getDefaultToolkit().beep();
                 }       
-                if (Character.isSpaceChar(c) || c == '¿' || c == '?' || c == '\"' || c == '\'' || c == '¡' || c == '!' || c == '|' || c == '#' || c == '$' || c == '(' || c == ')' || c == '=') {
+                if (Character.isSpaceChar(c) || !Character.isAlphabetic(c)) {
                     evt.consume();
                     Toolkit.getDefaultToolkit().beep();
                 }
