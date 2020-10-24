@@ -5,7 +5,7 @@
  */
 
 /**
-* @author Giovani David Meza Poggio Seccion A 5990-18-14676
+ * @author Giovani David Meza Poggio Seccion A 5990-18-14676
  * @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
  * @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
  */
@@ -189,7 +189,7 @@ public class HtTransacciones extends javax.swing.JFrame {
             stmt = conn.prepareStatement(SQL_SELECT2);//se prepara el statement, esto reduce el trabajo de el DBMS
             rs = stmt.executeQuery();
     
-            while (rs.next()) {//*-**-*--**ID*-*-*-*-no_cuenta*-tipo_transaccion-**-fecha*-*-***-*-**-*-*-*cui*-*-*-*-*-tipo_cuenta-*-monto*-*-*-*-*-**nuevo_balance-*-descripcion
+            while (rs.next()) {//ID,no_cuenta,tipo_transaccion,fecha,cui,tipo_cuenta,nuevo_balance,descripcion
             modelo.addRow(new Object[]{rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDate(4).toString(),rs.getString(5),rs.getString(6),rs.getDouble(7),rs.getDouble(8),rs.getString(9)});
             }    
 //modelo.addRow(new Object[]{instanciaClientes.getCui()});
