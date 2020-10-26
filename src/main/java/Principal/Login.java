@@ -268,7 +268,7 @@ public class Login extends javax.swing.JFrame {
                     evt.consume();
                     Toolkit.getDefaultToolkit().beep();
                 }       
-                if (Character.isSpaceChar(c) || !Character.isAlphabetic(c)) {
+                if (Character.isSpaceChar(c)) {
                     evt.consume();
                     Toolkit.getDefaultToolkit().beep();
                 }
