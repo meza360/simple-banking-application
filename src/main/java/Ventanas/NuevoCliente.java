@@ -228,7 +228,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       Principal.Login Verformulario5 = new Principal.Login();
+       Menu Verformulario5 = new Menu();
        Verformulario5.setVisible(true);
        this.setVisible(false);
        //System.exit(0);

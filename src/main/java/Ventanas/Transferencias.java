@@ -194,7 +194,7 @@ public class Transferencias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Principal.Login Verformulario7 = new Principal.Login();
+        Menu Verformulario7 = new Menu();
         Verformulario7.setVisible(true);
         this.setVisible(false);
         //System.exit(0);

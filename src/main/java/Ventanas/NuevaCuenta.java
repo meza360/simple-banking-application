@@ -212,7 +212,7 @@ public class NuevaCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Principal.Login Verformulario6 = new Principal.Login();
+        Menu Verformulario6 = new Menu();
         Verformulario6.setVisible(true);
         this.setVisible(false);
         //System.exit(0);
