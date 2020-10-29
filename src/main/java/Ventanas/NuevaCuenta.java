@@ -13,6 +13,9 @@
 package Ventanas;
 
 import java.awt.Toolkit;
+import Conexion.ConexionBD;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class NuevaCuenta extends javax.swing.JFrame {
 
@@ -205,6 +208,28 @@ public class NuevaCuenta extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        String cui,tipo,SQL_NEW_ACC; 
+        double monto;
+        
+        cui = this.jTextField1.getText();
+        tipo = this.jComboBox1.getSelectedItem().toString();
+        monto = Double.parseDouble(this.jTextField2.getText());
+        
+        SQL_NEW_ACC = "Call Banco.sp_nueva_cuenta('" + cui + "','" + tipo + "'," + monto + ");";
+        
+        try {
+        Connection conn = ConexionBD.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(SQL_NEW_ACC);
+        stmt.execute();
+        JOptionPane.showMessageDialog(null, "Insercion Aceptada", "Se creo la cuenta corretamente", JOptionPane.INFORMATION_MESSAGE);
+                
+        } catch (Exception xe) {
+            xe.printStackTrace(System.out);
+            JOptionPane.showMessageDialog(null, "Revise los parametros", xe.toString(), JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -93,7 +93,7 @@ public class Transacciones {
     
     
     
-    
+    //metodo opcional para obtener un ResultSet de historial de transacciones
     public List<Transacciones> select(){ 
         
         Connection conn = null;//variable tipo connection
