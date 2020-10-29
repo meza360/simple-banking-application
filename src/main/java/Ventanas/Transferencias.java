@@ -19,15 +19,13 @@ import javax.swing.JOptionPane;
 
 
 public class Transferencias extends javax.swing.JFrame {
-
     /**
      * Creates new form trasferencia
      */
     public Transferencias() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        
+        this.setResizable(false);  
     }
 
     public ArrayList<Double> balance = new ArrayList<Double>();
@@ -279,7 +277,7 @@ public class Transferencias extends javax.swing.JFrame {
         double new_balance;
         
         SQL_SEARCH_ACCS = "SELECT no_cuenta,balance FROM Cuentas WHERE cui_cliente = '" + cui + "';";
-       // SQL_SEARCH_CX = "SELECT * FROM Banco.Clientes WHERE cui = '" + cui + "';";
+       //SQL_SEARCH_CX = "SELECT * FROM Banco.Clientes WHERE cui = '" + cui + "';";
         
         try {
             Connection conn = ConexionBD.getConnection();
@@ -294,8 +292,6 @@ public class Transferencias extends javax.swing.JFrame {
             balance.add(new_balance);
             System.out.println("Tamaño de la lista: " + balance.size() + "  " + cuenta.size());
             }
-            
-
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
             JOptionPane.showMessageDialog(null, "Error", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
@@ -306,30 +302,22 @@ public class Transferencias extends javax.swing.JFrame {
             auxiliar++;
             }
             auxiliar = 0;
-         
         }
-        
-        
+  
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        // int a = this.jComboBox1.getSelectedIndex();
-        // this.jTextPane1.setText(balance.get(a).toString());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        //this.jComboBox1.setSelectedIndex(-1);
-        // int a = this.jComboBox1.getSelectedIndex();
         this.jTextPane1.setText(this.balance.get(jComboBox1.getSelectedIndex()).toString());
-        
-        
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here: 
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
 
