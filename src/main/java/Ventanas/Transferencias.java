@@ -17,11 +17,13 @@
 
 
 package Ventanas;
+
 /**
 * @author Giovani David Meza Poggio Seccion A 5990-18-14676
- * @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
- * @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
- */
+* @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
+* @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
+*/
+
 import Conexion.ConexionBD;
 import java.awt.Toolkit;
 import java.sql.*;
@@ -339,12 +341,33 @@ public class Transferencias extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         monto = Double.parseDouble(this.jTextField1.getText());
+        double tmp = Double.parseDouble(this.jTextPane1.getText());
+        int option;
+        
+        if (monto == tmp) {
+            option =  JOptionPane.showConfirmDialog(null, "¿Desea retirar todo el balance de la cuenta", "Confirmacion",JOptionPane.YES_NO_CANCEL_OPTION ,JOptionPane.INFORMATION_MESSAGE) ;
+                if (option == 0) {
+                    JOptionPane.showMessageDialog(null, "El balance de su cuenta es 0, pero puede demorar 24 horas en actualizarse su estado de cuenta");
+                    System.out.println("Seleccion de si");
+                }
+                else if(option == 1){
+                    this.jTextField2.setText("");
+                    System.out.println("Seleccion de no");
+                }
+        }
+        else if(monto > tmp){
+        JOptionPane.showMessageDialog(null,"El monto seleccionado No puede ser mayor\n al balance total de la cuenta", "Error de operacion" , JOptionPane.ERROR_MESSAGE);
+            this.jTextField1.setText("");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+       
         this.jTextPane1.setText(this.balance.get(jComboBox1.getSelectedIndex()).toString());
-
+        
+        
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
