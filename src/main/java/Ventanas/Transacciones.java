@@ -35,6 +35,7 @@ public class Transacciones extends javax.swing.JFrame {
         this.setResizable(false); 
     }
 
+    double monto = 0.0,balance = 0.0;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,11 +77,16 @@ public class Transacciones extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Balance");
 
+        jTextPane1.setEditable(false);
+        jTextPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextPane1.setAutoscrolls(false);
         jTextPane1.setMaximumSize(new java.awt.Dimension(100, 20));
         jTextPane1.setMinimumSize(new java.awt.Dimension(100, 20));
+        jTextPane1.setOpaque(false);
         jTextPane1.setPreferredSize(new java.awt.Dimension(150, 20));
         jScrollPane1.setViewportView(jTextPane1);
+        jTextPane1.getAccessibleContext().setAccessibleParent(jTextField1);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Buscar");
@@ -122,21 +128,30 @@ public class Transacciones extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1))
+                .addGap(81, 81, 81))
         );
 
         jPanel1.setBackground(new java.awt.Color(66, 162, 211));
 
         jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton1.setText("Retiro");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton2.setText("Deposito");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Monto");
@@ -148,6 +163,11 @@ public class Transacciones extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Enviar solicitud");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTextPane2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextPane2.setText("Esperando solicitud...");
@@ -247,8 +267,13 @@ public class Transacciones extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        // Call sp_nueva_transaccion(100000007,"Deposito en Caja",'C',5000);
         String no_cuenta = this.jTextField1.getText();
+        monto = 0.0;
+        final String SQL_DRAW = "Call sp_nueva_transaccion("+ no_cuenta +",\"Deposito en Caja\",'R',"+ monto + ");";
+        final String SQL_DEPO = "Call sp_nueva_transaccion("+ no_cuenta +",\"Deposito en Caja\",'D',"+ monto + ");";
         final String SQL_SEARCH_ACCS = "SELECT balance FROM Cuentas WHERE no_cuenta = '" + no_cuenta + "';";
+        
         
         try {
             Connection conn = ConexionBD.getConnection();
@@ -256,6 +281,7 @@ public class Transacciones extends javax.swing.JFrame {
             PreparedStatement stmt = conn.prepareStatement(SQL_SEARCH_ACCS);
             rs = stmt.executeQuery();
             while (rs.next()) {
+                balance = rs.getDouble(1);
                 this.jTextPane1.setText(rs.getString(1));
             }
             
@@ -267,6 +293,42 @@ public class Transacciones extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        monto = Double.parseDouble(this.jTextField2.getText());
+        int option;
+        if (this.jRadioButton1.isSelected()) {
+            if (monto ==  balance) {
+                option =  JOptionPane.showConfirmDialog(null, "¿Desea retirar todo el balance de la cuenta", "Confirmacion",JOptionPane.YES_NO_CANCEL_OPTION ,JOptionPane.INFORMATION_MESSAGE) ;
+                if (option == 0) {
+                    JOptionPane.showMessageDialog(null, "El balance de su cuenta es 0, pero puede demorar 24 horas en actualizarse su estado de cuenta");
+                    System.out.println("Seleccion de si");
+                }
+                else if(option == 1){
+                    this.jTextField2.setText("");
+                    System.out.println("Seleccion de no");
+                }
+
+                
+            }
+            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        if (this.jRadioButton1.isSelected()) {
+            this.jRadioButton2.setSelected(false);
+        }
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        if (this.jRadioButton2.isSelected()) {
+            this.jRadioButton1.setSelected(false);
+        }
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     /**
      * @param args the command line arguments
