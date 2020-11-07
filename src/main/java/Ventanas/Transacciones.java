@@ -17,6 +17,7 @@
 package Ventanas;
 
 import Conexion.ConexionBD;
+import java.awt.Toolkit;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -97,6 +98,11 @@ public class Transacciones extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.setText("jTextField1");
         jTextField1.setPreferredSize(new java.awt.Dimension(150, 23));
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,6 +165,11 @@ public class Transacciones extends javax.swing.JFrame {
         jTextField2.setText("jTextField2");
         jTextField2.setMinimumSize(new java.awt.Dimension(100, 23));
         jTextField2.setPreferredSize(new java.awt.Dimension(100, 23));
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Enviar solicitud");
@@ -330,6 +341,32 @@ public class Transacciones extends javax.swing.JFrame {
             this.jRadioButton1.setSelected(false);
         }
     }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+                if (jTextField1.getText().length() >= 9) {
+                    evt.consume();
+                    Toolkit.getDefaultToolkit().beep();
+                }       
+                if (Character.isSpaceChar(c) || Character.isAlphabetic(c)) {
+                    evt.consume();
+                    Toolkit.getDefaultToolkit().beep();
+                }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+                if (jTextField2.getText().length() >= String.valueOf(balance).length()) {
+                    evt.consume();
+                    Toolkit.getDefaultToolkit().beep();
+                }       
+                if (Character.isSpaceChar(c) || Character.isAlphabetic(c)) {
+                    evt.consume();
+                    Toolkit.getDefaultToolkit().beep();
+                }
+    }//GEN-LAST:event_jTextField2KeyTyped
 
     /**
      * @param args the command line arguments

@@ -23,6 +23,7 @@ package Ventanas;
  * @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
  */
 import Conexion.ConexionBD;
+import java.awt.Toolkit;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -41,6 +42,7 @@ public class Transferencias extends javax.swing.JFrame {
     public ArrayList<Double> balance = new ArrayList<Double>();
     public ArrayList<Integer> cuenta = new ArrayList<Integer>();
     public int auxiliar = 0;
+    public double monto;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,6 +109,11 @@ public class Transferencias extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Descripcion");
@@ -129,6 +136,11 @@ public class Transferencias extends javax.swing.JFrame {
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField2.setPreferredSize(new java.awt.Dimension(10, 23));
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("Regresar");
@@ -147,6 +159,11 @@ public class Transferencias extends javax.swing.JFrame {
         });
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Cui del cliente");
@@ -321,6 +338,7 @@ public class Transferencias extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        monto = Double.parseDouble(this.jTextField1.getText());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -332,6 +350,45 @@ public class Transferencias extends javax.swing.JFrame {
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here: 
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (this.jTextField3.getText().length() >= 13) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+        if (Character.isSpaceChar(c) || Character.isAlphabetic(c) || Character.isSurrogate(c)) {
+                    evt.consume();
+                    Toolkit.getDefaultToolkit().beep();
+                }
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (this.jTextField2.getText().length() >= 9) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+        if (Character.isSpaceChar(c) || Character.isAlphabetic(c) || Character.isSurrogate(c)) {
+                    evt.consume();
+                    Toolkit.getDefaultToolkit().beep();
+                }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (this.jTextField1.getText().length() >= String.valueOf(balance).length()) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+        if (Character.isSpaceChar(c) || Character.isAlphabetic(c) || Character.isSurrogate(c)) {
+                    evt.consume();
+                    Toolkit.getDefaultToolkit().beep();
+                }
+    }//GEN-LAST:event_jTextField1KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
