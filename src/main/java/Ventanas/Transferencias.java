@@ -343,8 +343,8 @@ public class Transferencias extends javax.swing.JFrame {
         monto = Double.parseDouble(this.jTextField1.getText());
         double tmp = Double.parseDouble(this.jTextPane1.getText());
         int option;
-        
-        if (monto == tmp) {
+        try {
+            if (monto == tmp) {
             option =  JOptionPane.showConfirmDialog(null, "¿Desea retirar todo el balance de la cuenta", "Confirmacion",JOptionPane.YES_NO_CANCEL_OPTION ,JOptionPane.INFORMATION_MESSAGE) ;
                 if (option == 0) {
                     JOptionPane.showMessageDialog(null, "El balance de su cuenta es 0, pero puede demorar 24 horas en actualizarse su estado de cuenta");
@@ -359,6 +359,17 @@ public class Transferencias extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"El monto seleccionado No puede ser mayor\n al balance total de la cuenta", "Error de operacion" , JOptionPane.ERROR_MESSAGE);
             this.jTextField1.setText("");
         }
+        } catch (Exception ex) {
+        ex.printStackTrace(System.out);
+        JOptionPane.showMessageDialog(null, "Error en \n" + ex.getMessage() , "Error en la operacion", JOptionPane.ERROR_MESSAGE);
+        }
+        finally{
+        this.jTextField1.setText("");
+        this.jTextField2.setText("");
+        this.jTextPane1.setText("");
+        this.jComboBox1.setSelectedIndex(-1);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

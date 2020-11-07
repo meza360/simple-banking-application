@@ -96,7 +96,6 @@ public class Transacciones extends javax.swing.JFrame {
         });
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setText("jTextField1");
         jTextField1.setPreferredSize(new java.awt.Dimension(150, 23));
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -162,7 +161,6 @@ public class Transacciones extends javax.swing.JFrame {
         jLabel4.setText("Monto");
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField2.setText("jTextField2");
         jTextField2.setMinimumSize(new java.awt.Dimension(100, 23));
         jTextField2.setPreferredSize(new java.awt.Dimension(100, 23));
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -308,7 +306,8 @@ public class Transacciones extends javax.swing.JFrame {
         // TODO add your handling code here:
         monto = Double.parseDouble(this.jTextField2.getText());
         int option;
-        if (this.jRadioButton1.isSelected()) {
+        try {
+            if (this.jRadioButton1.isSelected()) {
             if (monto ==  balance) {
                 option =  JOptionPane.showConfirmDialog(null, "¿Desea retirar todo el balance de la cuenta", "Confirmacion",JOptionPane.YES_NO_CANCEL_OPTION ,JOptionPane.INFORMATION_MESSAGE) ;
                 if (option == 0) {
@@ -321,11 +320,20 @@ public class Transacciones extends javax.swing.JFrame {
                 }  
             }
             else if(monto > balance){
-            JOptionPane.showMessageDialog(null,"El monto seleccionado No puede ser mayor\n al balance total de la cuenta", "Error de operacion" , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"El monto seleccionado No puede ser mayor\n al balance total de la cuenta", "Error de operacion" , JOptionPane.WARNING_MESSAGE);
             this.jTextField2.setText("");
             }
             
         }
+        } catch (Exception ex) {
+        }
+        finally{
+        this.jTextField1.setText("");
+        this.jTextField2.setText("");
+        this.jTextPane1.setText("");
+        this.jTextPane2.setText("");
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed

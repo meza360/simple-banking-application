@@ -315,7 +315,7 @@ public class NuevoCliente extends javax.swing.JFrame {
             ResultSet rs;
             PreparedStatement stmt = conn.prepareStatement(SQL_NEW_CX);
             stmt.execute();
-            JOptionPane.showMessageDialog(null, "Cliente agregado exitosamente", "Operacion Exitosa",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cliente agregado exitosamente", "Operacion Exitosa",JOptionPane.INFORMATION_MESSAGE);
             
             
         } catch (Exception ex) {

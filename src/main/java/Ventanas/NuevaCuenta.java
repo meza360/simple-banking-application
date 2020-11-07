@@ -241,6 +241,11 @@ public class NuevaCuenta extends javax.swing.JFrame {
             xe.printStackTrace(System.out);
             JOptionPane.showMessageDialog(null, "Revise los parametros", xe.toString(), JOptionPane.ERROR_MESSAGE);
         }
+        finally{
+        this.jTextField1.setText("");
+        this.jTextField2.setText("");
+        this.jComboBox1.setSelectedIndex(-1);
+        }
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
