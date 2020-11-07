@@ -78,7 +78,6 @@ public class Transacciones extends javax.swing.JFrame {
         jLabel3.setText("Balance");
 
         jTextPane1.setEditable(false);
-        jTextPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextPane1.setAutoscrolls(false);
         jTextPane1.setMaximumSize(new java.awt.Dimension(100, 20));
@@ -86,7 +85,6 @@ public class Transacciones extends javax.swing.JFrame {
         jTextPane1.setOpaque(false);
         jTextPane1.setPreferredSize(new java.awt.Dimension(150, 20));
         jScrollPane1.setViewportView(jTextPane1);
-        jTextPane1.getAccessibleContext().setAccessibleParent(jTextField1);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Buscar");
@@ -128,10 +126,11 @@ public class Transacciones extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jScrollPane1)))
                 .addGap(81, 81, 81))
         );
 
@@ -308,9 +307,11 @@ public class Transacciones extends javax.swing.JFrame {
                 else if(option == 1){
                     this.jTextField2.setText("");
                     System.out.println("Seleccion de no");
-                }
-
-                
+                }  
+            }
+            else if(monto > balance){
+            JOptionPane.showMessageDialog(null,"El monto seleccionado No puede ser mayor\n al balance total de la cuenta", "Error de operacion" , JOptionPane.ERROR_MESSAGE);
+            this.jTextField2.setText("");
             }
             
         }
