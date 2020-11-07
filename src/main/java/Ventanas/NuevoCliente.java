@@ -322,6 +322,14 @@ public class NuevoCliente extends javax.swing.JFrame {
             ex.printStackTrace(System.out);
             JOptionPane.showMessageDialog(null,"Revise los parametros","Error en la insercion",JOptionPane.ERROR_MESSAGE);
         }
+        finally{
+        this.jTextField1.setText("");
+        this.jTextField2.setText("");
+        this.jTextField3.setText("");
+        this.jTextField4.setText("");
+        this.jTextField5.setText("");
+        this.jTextField6.setText("");
+        }
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
