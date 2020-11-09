@@ -291,13 +291,14 @@ public class Transacciones extends javax.swing.JFrame {
             while (rs.next()) {
                 balance = rs.getDouble(1);
                 this.jTextPane1.setText(rs.getString(1));
-            }
-            
-            
+            }  
             
         } catch (Exception ex) {
              ex.printStackTrace(System.out);
-            JOptionPane.showMessageDialog(null, "Error", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error" + ex.getMessage(), "Error en la operacion", JOptionPane.ERROR_MESSAGE);
+        }
+        finally{
+        this.jTextPane2.setText("Cuenta encontrada...");
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -322,10 +323,11 @@ public class Transacciones extends javax.swing.JFrame {
             else if(monto > balance){
             JOptionPane.showMessageDialog(null,"El monto seleccionado No puede ser mayor\n al balance total de la cuenta", "Error de operacion" , JOptionPane.WARNING_MESSAGE);
             this.jTextField2.setText("");
-            }
-            
+            }            
         }
         } catch (Exception ex) {
+        ex.printStackTrace(System.out);
+            JOptionPane.showMessageDialog(null, "Error" + ex.getMessage(), "Error en la operacion", JOptionPane.ERROR_MESSAGE);
         }
         finally{
         this.jTextField1.setText("");
