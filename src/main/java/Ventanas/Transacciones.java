@@ -278,9 +278,7 @@ public class Transacciones extends javax.swing.JFrame {
         // Call sp_nueva_transaccion(100000007,"Deposito en Caja",'C',5000);
         String no_cuenta = this.jTextField1.getText();
         monto = 0.0;
-        final String SQL_DRAW = "Call sp_nueva_transaccion("+ no_cuenta +",\"Deposito en Caja\",'R',"+ monto + ");";
-        final String SQL_DEPO = "Call sp_nueva_transaccion("+ no_cuenta +",\"Deposito en Caja\",'D',"+ monto + ");";
-        final String SQL_SEARCH_ACCS = "SELECT balance FROM Cuentas WHERE no_cuenta = '" + no_cuenta + "';";
+       final String SQL_SEARCH_ACCS = "SELECT balance FROM Cuentas WHERE no_cuenta = '" + no_cuenta + "';";
         
         
         try {
@@ -305,9 +303,15 @@ public class Transacciones extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        String no_cuenta = this.jTextField1.getText();
         monto = Double.parseDouble(this.jTextField2.getText());
         int option;
+        final String SQL_DRAW = "Call sp_nueva_transaccion("+ no_cuenta +",\"Retiro en Caja\",'R',"+ monto + ");";
+        final String SQL_DEPO = "Call sp_nueva_transaccion("+ no_cuenta +",\"Deposito en Caja\",'C',"+ monto + ");";
+        
         try {
+            Connection conn = ConexionBD.getConnection();
+            
             if (this.jRadioButton1.isSelected()) {
             if (monto ==  balance) {
                 option =  JOptionPane.showConfirmDialog(null, "¿Desea retirar todo el balance de la cuenta", "Confirmacion",JOptionPane.YES_NO_CANCEL_OPTION ,JOptionPane.INFORMATION_MESSAGE) ;
@@ -323,8 +327,22 @@ public class Transacciones extends javax.swing.JFrame {
             else if(monto > balance){
             JOptionPane.showMessageDialog(null,"El monto seleccionado No puede ser mayor\n al balance total de la cuenta", "Error de operacion" , JOptionPane.WARNING_MESSAGE);
             this.jTextField2.setText("");
-            }            
+            }   
+            else{
+            PreparedStatement stmt = conn.prepareStatement(SQL_DRAW);
+            stmt.execute();
+            JOptionPane.showMessageDialog(null,"Se ha ingresado su solicitud\nVerifique su estado de cuenta", "Retiro satisfactorio", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+            
+            
         }
+            if (this.jRadioButton2.isSelected()) {
+                PreparedStatement stmt = conn.prepareStatement(SQL_DEPO);
+                stmt.execute();
+                JOptionPane.showMessageDialog(null,"Se ha ingresado su solicitud\nVerifique su estado de cuenta", "Deposito satisfactorio", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
         } catch (Exception ex) {
         ex.printStackTrace(System.out);
             JOptionPane.showMessageDialog(null, "Error" + ex.getMessage(), "Error en la operacion", JOptionPane.ERROR_MESSAGE);

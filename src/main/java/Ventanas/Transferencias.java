@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 package Ventanas;
 
 /**
@@ -39,6 +38,7 @@ public class Transferencias extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);  
+        this.jTextPane1.setEnabled(false);
     }
 
     public ArrayList<Double> balance = new ArrayList<Double>();
@@ -307,9 +307,7 @@ public class Transferencias extends javax.swing.JFrame {
         String SQL_SEARCH_CX,SQL_SEARCH_ACCS,cui = this.jTextField3.getText();
         int nueva_cuenta;
         double new_balance;
-        
         SQL_SEARCH_ACCS = "SELECT no_cuenta,balance FROM Cuentas WHERE cui_cliente = '" + cui + "';";
-       //SQL_SEARCH_CX = "SELECT * FROM Banco.Clientes WHERE cui = '" + cui + "';";
         
         try {
             Connection conn = ConexionBD.getConnection();
@@ -329,24 +327,33 @@ public class Transferencias extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
         finally{
+            this.jTextField3.setEnabled(false);
             while (!cuenta.isEmpty() && auxiliar < cuenta.size()) {
             this.jComboBox1.addItem(cuenta.get(auxiliar).toString());
             auxiliar++;
             }
             auxiliar = 0;
         }
-  
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         monto = Double.parseDouble(this.jTextField1.getText());
         double tmp = Double.parseDouble(this.jTextPane1.getText());
+        String cuenta_origen = this.jComboBox1.getSelectedItem().toString();
+        String cuenta_remitente = this.jTextField2.getText();
+        String descripcion = this.jTextArea1.getText();
+        final String SQL_TR = "CALL sp_nueva_transferencia(" + cuenta_origen + "," + cuenta_remitente + ",\"" + descripcion + "\"," + monto + ");";
         int option;
+        
         try {
+            Connection conn = ConexionBD.getConnection();
+            PreparedStatement stmt;
             if (monto == tmp) {
             option =  JOptionPane.showConfirmDialog(null, "¿Desea retirar todo el balance de la cuenta", "Confirmacion",JOptionPane.YES_NO_CANCEL_OPTION ,JOptionPane.INFORMATION_MESSAGE) ;
                 if (option == 0) {
+                    stmt = conn.prepareStatement(SQL_TR);
+                    stmt.execute();
                     JOptionPane.showMessageDialog(null, "El balance de su cuenta es 0, pero puede demorar 24 horas en actualizarse su estado de cuenta");
                     System.out.println("Seleccion de si");
                 }
@@ -359,6 +366,11 @@ public class Transferencias extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"El monto seleccionado No puede ser mayor\n al balance total de la cuenta", "Error de operacion" , JOptionPane.ERROR_MESSAGE);
             this.jTextField1.setText("");
         }
+        else{
+            stmt = conn.prepareStatement(SQL_TR);
+            stmt.execute();
+            JOptionPane.showMessageDialog(null, "Transferencia realizada con exito,revise su estado de cuenta");
+        }
         } catch (Exception ex) {
         ex.printStackTrace(System.out);
         JOptionPane.showMessageDialog(null, "Error en \n" + ex.getMessage() , "Error en la operacion", JOptionPane.ERROR_MESSAGE);
@@ -367,18 +379,14 @@ public class Transferencias extends javax.swing.JFrame {
         this.jTextField1.setText("");
         this.jTextField2.setText("");
         this.jTextPane1.setText("");
+        this.jTextField3.setEnabled(true);
         this.jComboBox1.setSelectedIndex(-1);
         }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-       
         this.jTextPane1.setText(this.balance.get(jComboBox1.getSelectedIndex()).toString());
-        
-        
-        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
