@@ -15,14 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
 package Ventanas;
+
 /**
  * @author Giovani David Meza Poggio Seccion A 5990-18-14676
  * @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
  * @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
  */
+
 import Conexion.ConexionBD;
 import Datos.Cuentas;
 import Datos.Transacciones;
@@ -52,8 +52,7 @@ public class HtTransacciones extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        nuevoModelo();
-        
+        nuevoModelo();     
     }
 
     public DefaultTableModel modelo; 
@@ -309,16 +308,13 @@ public class HtTransacciones extends javax.swing.JFrame {
             System.out.println("Error en la consulta, revise los parametros");
             e.printStackTrace(System.out);
             JOptionPane.showMessageDialog(null,"Revise los parametros","Error en la consulta",JOptionPane.ERROR_MESSAGE);   
-        }
-    
-      
+        }     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         Menu Verformulario7 = new Menu();
         Verformulario7.setVisible(true);
         this.setVisible(false);
-        //System.exit(0);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -339,8 +335,7 @@ public class HtTransacciones extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
-        MessageFormat header = new MessageFormat("Historial de cuenta" + instanciaTransacciones.getNo_cuenta());
+        MessageFormat header = new MessageFormat("Historial de cuenta: " + instanciaTransacciones.getNo_cuenta());
         MessageFormat footer = new MessageFormat("Pagina {0}");
         
         try {
@@ -353,7 +348,6 @@ public class HtTransacciones extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
