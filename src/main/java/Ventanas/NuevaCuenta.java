@@ -15,14 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
 package Ventanas;
 /**
 * @author Giovani David Meza Poggio Seccion A 5990-18-14676
- * @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
- * @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
- */
+* @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
+* @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
+*/
 import java.awt.Toolkit;
 import Conexion.ConexionBD;
 import java.sql.*;
@@ -39,12 +37,12 @@ public class NuevaCuenta extends javax.swing.JFrame {
         this.setResizable(false);
         setComboOp();
     }
-
     
     void setComboOp(){
     this.jComboBox1.addItem("A");
     this.jComboBox1.addItem("D");
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -245,9 +243,7 @@ public class NuevaCuenta extends javax.swing.JFrame {
         this.jTextField1.setText("");
         this.jTextField2.setText("");
         this.jComboBox1.setSelectedIndex(-1);
-        }
-        
-        
+        } 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -258,7 +254,6 @@ public class NuevaCuenta extends javax.swing.JFrame {
         Menu Verformulario6 = new Menu();
         Verformulario6.setVisible(true);
         this.setVisible(false);
-        //System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

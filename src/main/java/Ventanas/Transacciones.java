@@ -22,8 +22,9 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author giova
+* @author Giovani David Meza Poggio Seccion A 5990-18-14676
+* @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
+* @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
  */
 public class Transacciones extends javax.swing.JFrame {
 
@@ -297,8 +298,7 @@ public class Transacciones extends javax.swing.JFrame {
         }
         finally{
         this.jTextPane2.setText("Cuenta encontrada...");
-        }
-        
+        }    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -332,10 +332,7 @@ public class Transacciones extends javax.swing.JFrame {
             PreparedStatement stmt = conn.prepareStatement(SQL_DRAW);
             stmt.execute();
             JOptionPane.showMessageDialog(null,"Se ha ingresado su solicitud\nVerifique su estado de cuenta", "Retiro satisfactorio", JOptionPane.INFORMATION_MESSAGE);
-            }
-            
-            
-            
+            }     
         }
             if (this.jRadioButton2.isSelected()) {
                 PreparedStatement stmt = conn.prepareStatement(SQL_DEPO);
@@ -352,8 +349,7 @@ public class Transacciones extends javax.swing.JFrame {
         this.jTextField2.setText("");
         this.jTextPane1.setText("");
         this.jTextPane2.setText("");
-        }
-        
+        }     
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed

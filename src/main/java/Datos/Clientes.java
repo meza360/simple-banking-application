@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package Datos;
 
 import java.sql.Connection;
@@ -23,11 +24,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import Conexion.ConexionBD;
+
 /**
  * @author Giovani David Meza Poggio Seccion A 5990-18-14676
  * @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
  * @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
  */
+
 public class Clientes {
     
     private String cui,nombre,apellido,email,domicilio;
@@ -35,8 +38,7 @@ public class Clientes {
     private String SQL_SELECT = "SELECT * FROM Clientes WHERE cui = " + getCui() + ";";
     
     public Clientes(){
-    //constructor vacio
-     
+    //constructor vacio 
     }
 
     public String getCui() {
@@ -126,15 +128,14 @@ public class Clientes {
         }
     } catch (SQLException ex) {ex.printStackTrace(System.out);}
     finally{
-        //enviamos los objetos creados a una clase diferente, para cerrar la conexion
+    //enviamos los objetos creados a una clase diferente, para cerrar la conexion
     ConexionBD.close(conn);
     ConexionBD.close(stmt);
     ConexionBD.close(rs);
     }
     return listaClientes;
     }
-   
-    
+
     @Override
     public String toString(){
         return "\nCui Cliente: " + this.getCui()
@@ -142,7 +143,6 @@ public class Clientes {
                 + "\nApellido cliente: " + this.getApellido()
                 + "\nEdad: " + this.getEdad()
                 + "\nEmail: " + this.getEmail()
-                + "\nDireccion domicilio: " + this.getDomicilio();                 
-    
+                + "\nDireccion domicilio: " + this.getDomicilio();
     }
 }

@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 package Ventanas;
 /**
 * @author Giovani David Meza Poggio Seccion A 5990-18-14676
- * @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
- * @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
- */
+* @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
+* @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
+*/
+
 import Conexion.ConexionBD;
 import java.awt.Toolkit;
 import java.sql.*;
@@ -293,7 +293,6 @@ public class NuevoCliente extends javax.swing.JFrame {
        Menu Verformulario5 = new Menu();
        Verformulario5.setVisible(true);
        this.setVisible(false);
-       //System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -317,7 +316,6 @@ public class NuevoCliente extends javax.swing.JFrame {
             stmt.execute();
             JOptionPane.showMessageDialog(null, "Cliente agregado exitosamente", "Operacion Exitosa",JOptionPane.INFORMATION_MESSAGE);
             
-            
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
             JOptionPane.showMessageDialog(null,"Revise los parametros","Error en la insercion",JOptionPane.ERROR_MESSAGE);
@@ -330,8 +328,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         this.jTextField5.setText("");
         this.jTextField6.setText("");
         }
-        
-        
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -344,7 +341,6 @@ public class NuevoCliente extends javax.swing.JFrame {
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         // TODO add your handling code here:
-        
         char c = evt.getKeyChar();
         if(this.jTextField1.getText().length() >=  16) {
             evt.consume();

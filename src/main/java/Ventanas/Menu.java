@@ -14,13 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package Ventanas;
 
 /**
 * @author Giovani David Meza Poggio Seccion A 5990-18-14676
- * @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
- * @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
- */
+* @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
+* @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
+*/
+
 public class Menu extends javax.swing.JFrame {
 
     /**
@@ -148,28 +150,24 @@ public class Menu extends javax.swing.JFrame {
        NuevoCliente Verformulario1 = new NuevoCliente();
        Verformulario1.setVisible(true);
        this.setVisible(false);
-       //System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       NuevaCuenta Verformulario2 = new NuevaCuenta(); 
       Verformulario2.setVisible(true);
       this.setVisible(false);
-       //System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        Transferencias Verformulario3 = new Transferencias();
        Verformulario3.setVisible(true);
        this.setVisible(false);
-       //System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        HtTransacciones Verformulario3 = new HtTransacciones();
        Verformulario3.setVisible(true);
        this.setVisible(false);
-       //System.exit(0);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -178,7 +176,6 @@ public class Menu extends javax.swing.JFrame {
         Transacciones v1 = new Transacciones();
         v1.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

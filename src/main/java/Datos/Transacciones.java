@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package Datos;
 
 import Conexion.ConexionBD;
@@ -30,6 +31,7 @@ import java.util.List;
  * @author Wendy Pricila Cifuentes Lutin Seccion A 5990-18-4413
  * @author Flor Eunice Garcia Ajquill Seccion A 5990-18-9172
  */
+
 public class Transacciones {
     private int id;
     private int no_cuenta;
@@ -101,8 +103,6 @@ public class Transacciones {
     public void setNuevo_balance(double nuevo_balance) {
         this.nuevo_balance = nuevo_balance;
     }
-    
-    
     
     //metodo opcional para obtener un ResultSet de historial de transacciones
     public List<Transacciones> select(){ 

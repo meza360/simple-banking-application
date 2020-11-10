@@ -68,7 +68,6 @@ public class HtTransacciones extends javax.swing.JFrame {
     String columnas[] = {"Id transferencia","Numero de cuenta","Tipo de transaccion","Fecha de transaccion","CUI del remitente","Tipo de cuenta","Monto de Transaccion","Nuevo balance", "Descripcion"};    
     modelo.setColumnIdentifiers(columnas);
     
-    
     columna = this.jTable1.getColumnModel().getColumn(0);columna.setPreferredWidth(100); 
     columna = this.jTable1.getColumnModel().getColumn(1);columna.setPreferredWidth(100);
     columna = this.jTable1.getColumnModel().getColumn(2);columna.setPreferredWidth(120);
@@ -78,8 +77,6 @@ public class HtTransacciones extends javax.swing.JFrame {
     columna = this.jTable1.getColumnModel().getColumn(6);columna.setPreferredWidth(120);
     columna = this.jTable1.getColumnModel().getColumn(7);columna.setPreferredWidth(100);
     columna = this.jTable1.getColumnModel().getColumn(8);columna.setPreferredWidth(200);
-    
-    
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -286,11 +283,9 @@ public class HtTransacciones extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-// TODO add your handling code here:
-    
+// TODO add your handling code here:  
     instanciaTransacciones.setNo_cuenta(Integer.parseInt(this.jTextField1.getText()));
 
-    
     String SQL_SELECT2 = "SELECT "
             + "trs.id, trs.no_cuenta,trs.tipo_transaccion,trs.fecha_transaccion,cts.cui_cliente,cts.tipo_cuenta,trs.monto,trs.nuevo_balance,trs.descripcion "
             + "FROM Banco.Cuentas cts JOIN  Banco.Transacciones trs ON trs.no_cuenta = cts.no_cuenta WHERE cts.no_cuenta = "+ instanciaTransacciones.getNo_cuenta() + ";";
