@@ -323,7 +323,7 @@ public class HtTransacciones extends javax.swing.JFrame {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
         }
-        if(this.jTextField1.getText().length() >= 13) {
+        if(this.jTextField1.getText().length() >= 9) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyTyped
