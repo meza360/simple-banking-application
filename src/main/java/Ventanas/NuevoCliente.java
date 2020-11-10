@@ -307,7 +307,8 @@ public class NuevoCliente extends javax.swing.JFrame {
         email = this.jTextField5.getText();
         direccion = this.jTextField6.getText();
        
-        String SQL_NEW_CX = "Call Banco.sp_nuevo_cliente('" + cui + "','" + nombre + "','" + apellido + "'," + edad + ",'" + email + "','" + direccion + "');";
+        String SQL_NEW_CX = "Call Banco.sp_nuevo_cliente('" + cui + "','" + nombre + "','" 
+                + apellido + "'," + edad + ",'" + email + "','" + direccion + "');";
         
         try {
             Connection conn = ConexionBD.getConnection();

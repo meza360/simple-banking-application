@@ -343,18 +343,21 @@ public class Transferencias extends javax.swing.JFrame {
         String cuenta_origen = this.jComboBox1.getSelectedItem().toString();
         String cuenta_remitente = this.jTextField2.getText();
         String descripcion = this.jTextArea1.getText();
-        final String SQL_TR = "CALL sp_nueva_transferencia(" + cuenta_origen + "," + cuenta_remitente + ",\"" + descripcion + "\"," + monto + ");";
+        final String SQL_TR = "CALL sp_nueva_transferencia(" + cuenta_origen + "," 
+                + cuenta_remitente + ",\"" + descripcion + "\"," + monto + ");";
         int option;
         
         try {
             Connection conn = ConexionBD.getConnection();
             PreparedStatement stmt;
             if (monto == tmp) {
-            option =  JOptionPane.showConfirmDialog(null, "¿Desea retirar todo el balance de la cuenta", "Confirmacion",JOptionPane.YES_NO_CANCEL_OPTION ,JOptionPane.INFORMATION_MESSAGE) ;
+            option =  JOptionPane.showConfirmDialog(null, "¿Desea retirar "
+                    + "todo el balance de la cuenta", "Confirmacion",JOptionPane.YES_NO_CANCEL_OPTION ,JOptionPane.INFORMATION_MESSAGE) ;
                 if (option == 0) {
                     stmt = conn.prepareStatement(SQL_TR);
                     stmt.execute();
-                    JOptionPane.showMessageDialog(null, "El balance de su cuenta es 0, pero puede demorar 24 horas en actualizarse su estado de cuenta");
+                    JOptionPane.showMessageDialog(null, "El balance de su cuenta es 0"
+                            + "\npero puede demorar 24 horas en actualizarse su estado de cuenta");
                     System.out.println("Seleccion de si");
                 }
                 else if(option == 1){
@@ -363,7 +366,8 @@ public class Transferencias extends javax.swing.JFrame {
                 }
         }
         else if(monto > tmp){
-        JOptionPane.showMessageDialog(null,"El monto seleccionado No puede ser mayor\n al balance total de la cuenta", "Error de operacion" , JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null,"El monto seleccionado No puede ser mayor"
+                + "\n al balance total de la cuenta", "Error de operacion" , JOptionPane.ERROR_MESSAGE);
             this.jTextField1.setText("");
         }
         else{
