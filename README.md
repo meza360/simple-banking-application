@@ -1,4 +1,4 @@
-# proyecto_banco
+# Gestor de base de datos en un banco
 Proyecto de banco en java/jdbc
 El programa esta diseñado para trabajar con un motor MySQL 5.7 o superior
 El host debe ser cambiado una vez se clone y abra el repositorio en un IDE
